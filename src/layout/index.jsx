@@ -1,7 +1,9 @@
+import Header from "../components/Header";
+
 function Layout({children}) {
   return (
     <div>
-     <header>Header section</header>
+     <Header></Header>
      {children}
     </div>
   )

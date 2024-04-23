@@ -10,9 +10,23 @@ import ErrorPage from './pages/ErrorPage';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import Layout from './layout';
+import { createContext, useEffect, useState } from 'react';
+
+export const ThemeContext = createContext(null);
 
 function App() {
   const navigate = useNavigate();
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    if (localStorage.getItem('theme')) {
+      setTheme(localStorage.getItem('theme'))
+    }
+  }, [])
+
+  useEffect(() => {
+    document.querySelector('html').setAttribute('data-theme', theme);
+  }, [theme])
 
   function ProtectedRoute({
     children,
@@ -27,7 +41,7 @@ function App() {
   }
 
   return (
-    <div>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
       <Routes>
         {/* public  */}
         <Route
@@ -97,7 +111,7 @@ function App() {
           }
         ></Route>
       </Routes>
-    </div>
+    </ThemeContext.Provider>
   );
 }
 
