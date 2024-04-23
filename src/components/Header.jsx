@@ -21,7 +21,7 @@ function Header() {
       </div>
       <div className='header-main bg-primary-content'>
         <div className='w-3/5 mx-auto'>
-          <div className='navbar'>
+          <div className='navbar p-0'>
             <div className='navbar-start'>
               <Link
                 to='/'
